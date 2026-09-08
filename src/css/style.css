@@ -1,0 +1,221 @@
+/* Base Resets & Global Page Layout */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-family-base);
+  color: var(--text-main);
+  background: linear-gradient(180deg, var(--bg-page-top) 0%, var(--bg-page-mid) 50%, var(--bg-page-bottom) 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ambient Floating Canvas */
+.ambient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.65;
+}
+
+/* Top Navigation Bar */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(249, 243, 253, 0.75);
+  border-bottom: 1px solid rgba(216, 180, 254, 0.3);
+  max-width: var(--mobile-container-max);
+  margin: 0 auto;
+  border-radius: 0 0 20px 20px;
+}
+
+.brand-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--purple-deep);
+}
+
+.heart-pulse {
+  color: var(--pink-accent);
+  display: inline-block;
+  animation: pulse 1.8s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+}
+
+.nav-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 12px;
+  border-radius: var(--badge-radius);
+  border: 1px solid var(--purple-border);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--purple-deep);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-smooth);
+  box-shadow: 0 2px 6px rgba(124, 58, 237, 0.06);
+}
+
+.nav-btn:hover, .nav-btn:active {
+  background: var(--purple-pale);
+  transform: translateY(-1px);
+  border-color: var(--purple-primary);
+}
+
+.btn-icon {
+  font-size: 0.9rem;
+}
+
+/* Page Container (Fully optimized for Mobile & centered on desktop) */
+.page-container {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: var(--mobile-container-max);
+  margin: 0 auto;
+  padding: 16px 16px 60px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Base Card Style */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  border: 1.5px solid var(--card-border-color);
+  box-shadow: var(--card-shadow-md);
+  padding: var(--card-padding-mobile);
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--duration-normal) var(--ease-smooth), box-shadow var(--duration-normal) var(--ease-smooth);
+}
+
+.card:hover {
+  box-shadow: var(--card-shadow-lg);
+}
+
+/* Section Header Typography */
+.section-badge-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 14px;
+  background: var(--purple-card-bg);
+  color: var(--purple-deep);
+  border: 1px solid var(--purple-border);
+  border-radius: var(--badge-radius);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  box-shadow: var(--card-shadow-sm);
+}
+
+.pill-badge-pink {
+  background: #FFF1F2;
+  border-color: #FECDD3;
+  color: #BE123C;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--purple-deep);
+  line-height: 1.25;
+  margin-bottom: 6px;
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+/* Heart Divider */
+.heart-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 auto 22px auto;
+  width: 60%;
+}
+
+.divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(167, 139, 250, 0.4), transparent);
+}
+
+.divider-heart {
+  color: var(--purple-light);
+  font-size: 0.85rem;
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.hidden {
+  display: none !important;
+}

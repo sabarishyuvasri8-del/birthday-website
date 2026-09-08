@@ -1,0 +1,156 @@
+/* CSS Custom Properties & Design Tokens */
+:root,
+[data-theme="lavender"] {
+  /* Lavender Theme (Default from YourLovePage) */
+  --bg-page-top: #F9F3FD;
+  --bg-page-mid: #F2E5FA;
+  --bg-page-bottom: #EDE0F7;
+
+  --purple-deep: #4A1D96;
+  --purple-primary: #7C3AED;
+  --purple-medium: #8B5CF6;
+  --purple-light: #A78BFA;
+  --purple-subtle: #C4B5FD;
+  --purple-pale: #EDE9FE;
+  --purple-card-bg: #FAF5FF;
+  --purple-border: rgba(167, 139, 250, 0.35);
+
+  --card-bg: #FFFFFF;
+  --card-border-color: rgba(216, 180, 254, 0.45);
+  --btn-gradient-start: #8B5CF6;
+  --btn-gradient-end: #6D28D9;
+  --washi-tape-gradient: repeating-linear-gradient(45deg, #A78BFA, #A78BFA 6px, #E9D5FF 6px, #E9D5FF 12px);
+  --text-main: #33145A;
+  --text-muted: #725D8F;
+  --text-dim: #9E8DB6;
+}
+
+[data-theme="rose"] {
+  /* Rose Pink Theme */
+  --bg-page-top: #FFF1F5;
+  --bg-page-mid: #FFE4EC;
+  --bg-page-bottom: #FDCEDF;
+
+  --purple-deep: #831843;
+  --purple-primary: #E11D48;
+  --purple-medium: #F43F5E;
+  --purple-light: #FB7185;
+  --purple-subtle: #FDA4AF;
+  --purple-pale: #FFE4E6;
+  --purple-card-bg: #FFF5F7;
+  --purple-border: rgba(251, 113, 133, 0.35);
+
+  --card-bg: #FFFFFF;
+  --card-border-color: rgba(253, 164, 175, 0.45);
+  --btn-gradient-start: #FB7185;
+  --btn-gradient-end: #E11D48;
+  --washi-tape-gradient: repeating-linear-gradient(45deg, #FB7185, #FB7185 6px, #FFE4E6 6px, #FFE4E6 12px);
+  --text-main: #4C0519;
+  --text-muted: #9F1239;
+  --text-dim: #BE123C;
+}
+
+[data-theme="peach"] {
+  /* Peach Blossom Theme */
+  --bg-page-top: #FFF7ED;
+  --bg-page-mid: #FFEDD5;
+  --bg-page-bottom: #FED7AA;
+
+  --purple-deep: #7C2D12;
+  --purple-primary: #EA580C;
+  --purple-medium: #F97316;
+  --purple-light: #FB923C;
+  --purple-subtle: #FDBA74;
+  --purple-pale: #FFEDD5;
+  --purple-card-bg: #FFFBF5;
+  --purple-border: rgba(251, 146, 60, 0.35);
+
+  --card-bg: #FFFFFF;
+  --card-border-color: rgba(253, 186, 116, 0.45);
+  --btn-gradient-start: #FB923C;
+  --btn-gradient-end: #EA580C;
+  --washi-tape-gradient: repeating-linear-gradient(45deg, #FB923C, #FB923C 6px, #FFEDD5 6px, #FFEDD5 12px);
+  --text-main: #431407;
+  --text-muted: #9A3412;
+  --text-dim: #C2410C;
+}
+
+[data-theme="ocean"] {
+  /* Ocean Breeze Theme */
+  --bg-page-top: #F0FDFA;
+  --bg-page-mid: #CCFBF1;
+  --bg-page-bottom: #99F6E4;
+
+  --purple-deep: #134E4A;
+  --purple-primary: #0D9488;
+  --purple-medium: #14B8A6;
+  --purple-light: #2DD4BF;
+  --purple-subtle: #5EEAD4;
+  --purple-pale: #CCFBF1;
+  --purple-card-bg: #F0FDF4;
+  --purple-border: rgba(45, 212, 191, 0.35);
+
+  --card-bg: #FFFFFF;
+  --card-border-color: rgba(94, 234, 212, 0.45);
+  --btn-gradient-start: #2DD4BF;
+  --btn-gradient-end: #0D9488;
+  --washi-tape-gradient: repeating-linear-gradient(45deg, #2DD4BF, #2DD4BF 6px, #CCFBF1 6px, #CCFBF1 12px);
+  --text-main: #042F2E;
+  --text-muted: #115E59;
+  --text-dim: #0F766E;
+}
+
+[data-theme="midnight"] {
+  /* Midnight Romance Theme */
+  --bg-page-top: #1E152A;
+  --bg-page-mid: #160D24;
+  --bg-page-bottom: #0F081B;
+
+  --purple-deep: #FFFFFF;
+  --purple-primary: #A855F7;
+  --purple-medium: #C084FC;
+  --purple-light: #D8B4FE;
+  --purple-subtle: #E9D5FF;
+  --purple-pale: #281B3C;
+  --purple-card-bg: #221435;
+  --purple-border: rgba(168, 85, 247, 0.35);
+
+  --card-bg: #1B102B;
+  --card-border-color: rgba(168, 85, 247, 0.3);
+  --btn-gradient-start: #C084FC;
+  --btn-gradient-end: #9333EA;
+  --washi-tape-gradient: repeating-linear-gradient(45deg, #A855F7, #A855F7 6px, #281B3C 6px, #281B3C 12px);
+  --text-main: #F3E8FF;
+  --text-muted: #D8B4FE;
+  --text-dim: #A855F7;
+}
+
+:root {
+  /* Common tokens */
+  --card-shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.05);
+  --card-shadow-md: 0 10px 30px -4px rgba(0, 0, 0, 0.09), 0 4px 10px rgba(0, 0, 0, 0.03);
+  --card-shadow-lg: 0 20px 40px -6px rgba(0, 0, 0, 0.14), 0 8px 18px rgba(0, 0, 0, 0.04);
+  --card-radius: 28px;
+  --inner-radius: 20px;
+  --badge-radius: 9999px;
+
+  /* Typography */
+  --font-family-base: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-romantic: 'Caveat', 'Dancing Script', cursive, sans-serif;
+  --text-light: #FFFFFF;
+
+  /* Accents */
+  --pink-accent: #EC4899;
+  --pink-subtle: #FCE7F3;
+  --gold-accent: #F59E0B;
+
+  /* Mobile Spacing */
+  --mobile-container-max: 460px;
+  --card-padding-mobile: 24px 20px;
+
+  /* Transitions */
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 0.2s;
+  --duration-normal: 0.35s;
+}

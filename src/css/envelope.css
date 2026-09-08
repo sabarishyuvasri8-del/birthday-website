@@ -1,0 +1,302 @@
+/* Interactive 3D Love Letter Envelope (Image 4 top) */
+
+.envelope-card {
+  padding: 34px 20px 30px 20px;
+  background: radial-gradient(circle at 50% 30%, #FAF5FF 0%, #FFFFFF 100%);
+  overflow: visible; /* Allows letter to slide up seamlessly */
+}
+
+.envelope-container {
+  position: relative;
+  width: 290px;
+  height: 200px;
+  margin: 20px auto 26px auto;
+  perspective: 1000px;
+}
+
+/* Ambient Floating Hearts Around Envelope */
+.ambient-heart {
+  position: absolute;
+  color: var(--purple-light);
+  font-size: 1.1rem;
+  opacity: 0.75;
+  pointer-events: none;
+  animation: floatHeart 3s infinite ease-in-out;
+}
+
+.h1 { top: -14px; left: 10px; font-size: 0.95rem; animation-delay: 0s; }
+.h2 { top: -20px; right: 80px; font-size: 1.2rem; animation-delay: 1.2s; }
+.h3 { bottom: 20px; right: -14px; font-size: 0.85rem; animation-delay: 0.7s; }
+
+@keyframes floatHeart {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-8px) scale(1.12); }
+}
+
+/* Envelope Body */
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #E9D5FF;
+  border-radius: 12px;
+  box-shadow: 0 16px 36px rgba(109, 40, 217, 0.18);
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform var(--duration-normal) var(--ease-smooth);
+}
+
+.envelope:hover {
+  transform: translateY(-3px);
+}
+
+/* Envelope Back Background */
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #D8B4FE;
+  border-radius: 12px;
+  z-index: 1;
+}
+
+/* Postage Stamp in Top Right Corner */
+.envelope-stamp {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 40px;
+  background: #FFFFFF;
+  border: 1.5px dashed var(--purple-medium);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 8;
+  transform: rotate(4deg);
+}
+
+.stamp-heart {
+  color: var(--purple-primary);
+  font-size: 0.9rem;
+}
+
+/* Left & Right & Bottom Fold Flaps */
+.envelope-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 100px 0 100px 145px;
+  border-color: transparent transparent transparent #E9D5FF;
+  border-bottom-left-radius: 12px;
+  border-top-left-radius: 12px;
+  z-index: 5;
+  filter: drop-shadow(2px 0 4px rgba(109, 40, 217, 0.06));
+}
+
+.envelope-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 100px 145px 100px 0;
+  border-color: transparent #E9D5FF transparent transparent;
+  border-bottom-right-radius: 12px;
+  border-top-right-radius: 12px;
+  z-index: 5;
+  filter: drop-shadow(-2px 0 4px rgba(109, 40, 217, 0.06));
+}
+
+.envelope-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 145px 115px 145px;
+  border-color: transparent transparent #DDD6FE transparent;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  z-index: 6;
+  filter: drop-shadow(0 -2px 6px rgba(109, 40, 217, 0.08));
+}
+
+/* Top Foldable Flap */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 110px 145px 0 145px;
+  border-color: #7C3AED transparent transparent transparent;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  transform-origin: top center;
+  transform: rotateX(0deg);
+  transition: transform 0.65s var(--ease-smooth), z-index 0.2s 0.25s;
+  z-index: 7;
+  filter: drop-shadow(0 4px 8px rgba(109, 40, 217, 0.22));
+}
+
+/* Wax Seal Button in Center */
+.wax-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #6D28D9 0%, #4C1D95 100%);
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 14px rgba(76, 29, 149, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9;
+  transition: all var(--duration-normal) var(--ease-spring);
+}
+
+.wax-seal:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 6px 18px rgba(76, 29, 149, 0.6);
+}
+
+.seal-heart {
+  color: #FFFFFF;
+  font-size: 1.15rem;
+}
+
+/* Slide-out Letter Paper */
+.letter {
+  position: absolute;
+  bottom: 8px;
+  left: 12px;
+  right: 12px;
+  height: 180px;
+  background: #FFFDF9;
+  border: 1px solid rgba(216, 180, 254, 0.5);
+  border-radius: 8px;
+  padding: 16px 14px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  z-index: 3;
+  transition: all 0.75s var(--ease-spring);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.letter-stamp-mini {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 0.85rem;
+  color: var(--pink-accent);
+}
+
+.letter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.letter-salutation {
+  font-family: var(--font-family-romantic);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--purple-deep);
+}
+
+.letter-date {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.letter-body {
+  font-family: var(--font-family-romantic);
+  font-size: 1.22rem;
+  line-height: 1.35;
+  color: #2D154B;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.letter-signature {
+  font-family: var(--font-family-romantic);
+  font-size: 1.15rem;
+  text-align: right;
+  color: var(--purple-deep);
+  margin-top: 6px;
+  line-height: 1.2;
+}
+
+.close-letter-btn {
+  margin-top: 8px;
+  align-self: center;
+  padding: 4px 14px;
+  background: var(--purple-pale);
+  border: 1px solid var(--purple-border);
+  border-radius: var(--badge-radius);
+  color: var(--purple-deep);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+}
+
+.close-letter-btn:hover {
+  background: var(--purple-primary);
+  color: #FFFFFF;
+}
+
+/* OPENED STATE */
+.envelope.open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 2;
+  filter: drop-shadow(0 -4px 8px rgba(109, 40, 217, 0.15));
+}
+
+.envelope.open .wax-seal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+}
+
+.envelope.open .letter {
+  bottom: 70px;
+  height: 270px;
+  z-index: 10;
+  box-shadow: 0 16px 36px rgba(109, 40, 217, 0.25);
+}
+
+/* Tap to Open Prompt Pill */
+.envelope-prompt {
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.pill-interactive {
+  cursor: pointer;
+  background: #FFFFFF;
+  border-color: var(--purple-medium);
+  box-shadow: 0 3px 10px rgba(124, 58, 237, 0.12);
+  transition: all var(--duration-fast) var(--ease-spring);
+}
+
+.pill-interactive:hover, .pill-interactive:active {
+  background: var(--purple-pale);
+  transform: translateY(-2px);
+}

@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="lavender">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Happy Birthday, My Love</title>
+  <meta name="description" content="A special birthday celebration page made with all my love.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/css/variables.css">
+  <link rel="stylesheet" href="./src/css/style.css">
+  <link rel="stylesheet" href="./src/css/components.css">
+  <link rel="stylesheet" href="./src/css/wheel.css">
+  <link rel="stylesheet" href="./src/css/envelope.css">
+  <link rel="stylesheet" href="./src/css/cake.css">
+  <link rel="stylesheet" href="./src/css/photos.css">
+</head>
+<body>
+  <!-- Ambient Floating Romance Particles Canvas -->
+  <canvas id="ambient-hearts-canvas" class="ambient-canvas"></canvas>
+
+  <!-- Top Floating Utility Bar -->
+  <header class="top-nav">
+    <div class="brand-tag">
+      <span class="heart-pulse">♥</span>
+      <span class="brand-text">For You</span>
+    </div>
+    <div class="nav-actions">
+      <button id="music-toggle-btn" class="nav-btn" aria-label="Toggle Romantic Music" title="Play romantic music">
+        <span id="music-icon" class="btn-icon">🎵</span>
+        <span class="btn-label">Music</span>
+      </button>
+      <button id="settings-toggle-btn" class="nav-btn" aria-label="Customize Details" title="Customize Page">
+        <span class="btn-icon">⚙️</span>
+        <span class="btn-label">Customize</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Mobile-First Wrapper -->
+  <main class="page-container">
+
+    <!-- SECTION 1: HERO & CONFETTI EXPLOSION (Images 1 & 2) -->
+    <section class="card hero-card" id="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title" id="hero-title">Happy Birthday, My Love</h1>
+        <p class="hero-subtitle" id="hero-subtitle">Today we celebrate the most amazing person in my world 🎂</p>
+        
+        <div class="hero-action-group">
+          <!-- Optional Title Above Button -->
+          <p class="btn-micro-title hidden" id="hero-btn-title-above"></p>
+
+          <div class="hero-action">
+            <button id="make-wish-btn" class="btn-pill-primary wish-btn">
+              <span class="cake-emoji">🎂</span>
+              <span id="make-wish-text">Make a Wish!</span>
+              <span class="cake-emoji">🎂</span>
+            </button>
+          </div>
+
+          <!-- Optional Small Line Underneath -->
+          <p class="btn-micro-subline hidden" id="hero-btn-line-under"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: PHOTO MEMORIES / CAROUSEL (Images 1 bottom & 3) -->
+    <section class="card photos-card" id="photos-section">
+      <div class="section-badge-wrapper">
+        <span class="pill-badge">📷 MEMORIES</span>
+      </div>
+      <h2 class="section-title" id="photos-section-title">Our Sweet Moments</h2>
+      <p class="section-subtitle">A glimpse of the smiles we share</p>
+
+      <!-- Empty State or Gallery List -->
+      <div id="photos-container" class="photos-container">
+        <!-- Default interactive empty frame matching screenshot with instant add photo button -->
+        <div class="dashed-photo-box" id="dashed-photo-box">
+          <div class="empty-icon-wrap">📷</div>
+          <p class="empty-text">No photos yet</p>
+          <label for="photo-upload-input" class="btn-pill-outline photo-upload-label">
+            <span>+ Add a Memory</span>
+          </label>
+          <input type="file" id="photo-upload-input" accept="image/*" class="sr-only" multiple>
+        </div>
+
+        <!-- Polaroid or Clean Gallery (populated dynamically) -->
+        <div id="polaroid-track" class="polaroid-track hidden"></div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: LIVE RELATIONSHIP COUNTER (Image 5) -->
+    <section class="card counter-card" id="counter-section">
+      <div class="section-badge-wrapper">
+        <span class="pill-badge" id="anniversary-badge">📍 SINCE SEPTEMBER 5, 2025</span>
+      </div>
+      <h2 class="section-title">Every Moment With You</h2>
+      <p class="section-subtitle">We've been making memories together for</p>
+
+      <!-- 6-Box Countdown Grid -->
+      <div class="counter-grid">
+        <div class="counter-box">
+          <span class="counter-value" id="count-years">00</span>
+          <span class="counter-label">YEARS</span>
+        </div>
+        <div class="counter-box">
+          <span class="counter-value" id="count-months">00</span>
+          <span class="counter-label">MONTHS</span>
+        </div>
+        <div class="counter-box">
+          <span class="counter-value" id="count-days">00</span>
+          <span class="counter-label">DAYS</span>
+        </div>
+        <div class="counter-box">
+          <span class="counter-value" id="count-hours">00</span>
+          <span class="counter-label">HOURS</span>
+        </div>
+        <div class="counter-box">
+          <span class="counter-value" id="count-minutes">00</span>
+          <span class="counter-label">MINUTES</span>
+        </div>
+        <div class="counter-box">
+          <span class="counter-value" id="count-seconds">00</span>
+          <span class="counter-label">SECONDS</span>
+        </div>
+      </div>
+
+      <!-- Milestone Badges -->
+      <div class="milestones-row">
+        <div class="milestone-pill" id="milestone-total-days">
+          <span class="milestone-icon">📷</span>
+          <span id="milestone-days-text">365 days together</span>
+        </div>
+        <div class="milestone-pill" id="milestone-next-event">
+          <span class="milestone-icon">✨</span>
+          <span id="milestone-next-text">Together forever</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: REASONS YOU MAKE MY WORLD BRIGHTER (Image 2) -->
+    <section class="card reasons-card" id="reasons-section">
+      <div class="section-badge-wrapper">
+        <span class="pill-badge pill-badge-pink" id="reasons-badge">♥ 8 REASONS</span>
+      </div>
+      <h2 class="section-title" id="reasons-title">Reasons You Make My World Brighter</h2>
+      <p class="section-subtitle" id="reasons-subtitle">A little list of all the things I adore about you</p>
+      
+      <div class="heart-divider">
+        <span class="divider-line"></span>
+        <span class="divider-heart">♡</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <!-- List of Washi-Taped Reasons Cards (populated dynamically by reasons.js) -->
+      <div class="reasons-list" id="reasons-list"></div>
+    </section>
+
+    <!-- SECTION 5: SPIN FOR YOUR BIRTHDAY SURPRISE (Images 3 & 4) -->
+    <section class="card wheel-card" id="wheel-section">
+      <h2 class="section-title" id="wheel-title">Spin for Your Birthday Surprise</h2>
+      <p class="section-subtitle" id="wheel-subtitle">6 things could happen next</p>
+
+      <div class="wheel-stage">
+        <!-- Teardrop Indicator Pointer -->
+        <div class="wheel-pointer-container">
+          <div class="wheel-pointer">
+            <span class="pointer-dot"></span>
+          </div>
+        </div>
+
+        <!-- Wheel Canvas Container -->
+        <div class="wheel-wrapper">
+          <canvas id="wheel-canvas" width="340" height="340"></canvas>
+          <!-- Center Heart Hub -->
+          <div class="wheel-center-hub">
+            <span class="hub-heart">♥</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="wheel-action">
+        <button id="spin-btn" class="btn-pill-primary spin-btn">
+          <span id="spin-btn-text">Spin the Wheel</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- SECTION 6: INTERACTIVE LOVE LETTER ENVELOPE (Image 4 top) -->
+    <section class="card envelope-card" id="letter-section">
+      <h2 class="section-title sr-only">Secret Love Letter</h2>
+      
+      <div class="envelope-container">
+        <!-- Floating hearts around envelope -->
+        <div class="ambient-heart h1">♥</div>
+        <div class="ambient-heart h2">♥</div>
+        <div class="ambient-heart h3">♥</div>
+
+        <div class="envelope" id="envelope">
+          <!-- Envelope Body Base -->
+          <div class="envelope-back"></div>
+
+          <!-- Letter paper that slides out -->
+          <div class="letter" id="letter">
+            <div class="letter-stamp-mini">♥</div>
+            <div class="letter-header">
+              <span class="letter-salutation" id="letter-salutation">My Dearest,</span>
+              <span class="letter-date" id="letter-date">Today & Always</span>
+            </div>
+            <div class="letter-body" id="letter-body-text">
+              Happy Birthday to the most breathtaking girl in the entire universe! Every single day with you is filled with so much sunshine, laughter, and pure happiness. Thank you for loving me, inspiring me, and making my life so incredibly complete. I hope all your sweetest dreams come true this year!
+            </div>
+            <div class="letter-signature" id="letter-signature-text">
+              Forever & Always Yours,<br>
+              <span>With all my love ♡</span>
+            </div>
+            <button id="close-letter-btn" class="close-letter-btn" title="Fold back into envelope">
+              Fold Back ✉
+            </button>
+          </div>
+
+          <!-- Lower front flaps -->
+          <div class="envelope-left"></div>
+          <div class="envelope-right"></div>
+          <div class="envelope-bottom"></div>
+
+          <!-- Top Foldable Flap -->
+          <div class="envelope-flap" id="envelope-flap"></div>
+
+          <!-- Postage Stamp in Top Right Corner -->
+          <div class="envelope-stamp">
+            <div class="stamp-heart">♥</div>
+          </div>
+
+          <!-- Wax Seal Button in Center -->
+          <button id="wax-seal-btn" class="wax-seal" aria-label="Open Love Letter">
+            <span class="seal-heart">♥</span>
+          </button>
+        </div>
+
+        <!-- Tap to open pill -->
+        <div class="envelope-prompt">
+          <button id="tap-open-btn" class="pill-badge pill-interactive">
+            <span>✉ Tap to open</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: ROMANTIC MIXTAPE & AUDIO (Image 4 bottom) -->
+    <section class="card mixtape-card" id="mixtape-section">
+      <div class="mixtape-container">
+        <div class="vinyl-record-wrap" id="vinyl-wrap">
+          <div class="vinyl-disc" id="vinyl-disc">
+            <div class="vinyl-groove"></div>
+            <div class="vinyl-groove groove-inner"></div>
+            <div class="vinyl-center">
+              <span class="vinyl-heart">♥</span>
+            </div>
+          </div>
+          <div class="stylus-arm" id="stylus-arm"></div>
+        </div>
+
+        <div class="mixtape-info">
+          <span class="mixtape-badge">OUR SOUNDTRACK</span>
+          <h3 class="mixtape-track-title" id="track-title">Love Story</h3>
+          <p class="mixtape-artist" id="track-artist">Indila</p>
+
+          <!-- Animated Equalizer Bars -->
+          <div class="equalizer-bars" id="equalizer">
+            <span class="bar bar-1"></span>
+            <span class="bar bar-2"></span>
+            <span class="bar bar-3"></span>
+            <span class="bar bar-4"></span>
+            <span class="bar bar-5"></span>
+          </div>
+
+          <!-- Audio Element (for loaded / uploaded MP3) -->
+          <audio id="mixtape-audio" preload="auto" class="sr-only"></audio>
+
+          <!-- Play / Pause Controls -->
+          <div class="mixtape-controls">
+            <button id="mixtape-play-btn" class="btn-circle-primary play-btn" aria-label="Play Love Story by Indila">
+              <span id="play-icon">▶</span>
+            </button>
+            <div class="playback-meta">
+              <span class="playback-hint" id="playback-hint">Tap to play Love Story</span>
+              <label for="audio-file-input" class="upload-music-link" title="Upload your MP3 of Love Story by Indila">
+                <span>📁 Upload MP3</span>
+              </label>
+              <input type="file" id="audio-file-input" accept="audio/*" class="sr-only">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: YOUR BIRTHDAY PASSPORT / LOVE COUPONS -->
+    <section class="card coupons-card" id="coupons-section">
+      <div class="section-badge-wrapper">
+        <span class="pill-badge">🎫 BIRTHDAY PASSPORT</span>
+      </div>
+      <h2 class="section-title">Your Birthday Coupons</h2>
+      <p class="section-subtitle">Redeemable whenever you want, no expiration date</p>
+
+      <div class="coupons-grid" id="coupons-grid">
+        <!-- Coupon 1 -->
+        <div class="coupon-item" data-coupon="1">
+          <div class="coupon-notch notch-left"></div>
+          <div class="coupon-notch notch-right"></div>
+          <div class="coupon-body">
+            <span class="coupon-tag">COUPON #01</span>
+            <h4 class="coupon-title">One Free Wish Granted</h4>
+            <p class="coupon-desc">Whatever you ask for, I will make it happen immediately with a smile.</p>
+            <button class="redeem-btn" data-id="1">Redeem Coupon</button>
+          </div>
+        </div>
+
+        <!-- Coupon 2 -->
+        <div class="coupon-item" data-coupon="2">
+          <div class="coupon-notch notch-left"></div>
+          <div class="coupon-notch notch-right"></div>
+          <div class="coupon-body">
+            <span class="coupon-tag">COUPON #02</span>
+            <h4 class="coupon-title">Late Night Long Drive</h4>
+            <p class="coupon-desc">Good music, cold breeze, your favorite snacks, and warm hands.</p>
+            <button class="redeem-btn" data-id="2">Redeem Coupon</button>
+          </div>
+        </div>
+
+        <!-- Coupon 3 -->
+        <div class="coupon-item" data-coupon="3">
+          <div class="coupon-notch notch-left"></div>
+          <div class="coupon-notch notch-right"></div>
+          <div class="coupon-body">
+            <span class="coupon-tag">COUPON #03</span>
+            <h4 class="coupon-title">Breakfast of Your Choice</h4>
+            <p class="coupon-desc">Stay in bed and relax while I prepare your absolute favorite morning meal.</p>
+            <button class="redeem-btn" data-id="3">Redeem Coupon</button>
+          </div>
+        </div>
+
+        <!-- Coupon 4 -->
+        <div class="coupon-item" data-coupon="4">
+          <div class="coupon-notch notch-left"></div>
+          <div class="coupon-notch notch-right"></div>
+          <div class="coupon-body">
+            <span class="coupon-tag">COUPON #04</span>
+            <h4 class="coupon-title">Unlimited Cozy Hugs</h4>
+            <p class="coupon-desc">Valid for an entire day of warm cuddles whenever you need one.</p>
+            <button class="redeem-btn" data-id="4">Redeem Coupon</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Note -->
+    <footer class="footer-card">
+      <p class="footer-heart">Made with all my heart just for you ♥</p>
+      <p class="footer-sub">Happy Birthday, my beautiful soulmate.</p>
+    </footer>
+
+  </main>
+
+  <!-- MODAL: BIRTHDAY CAKE & WISH BLOWOUT -->
+  <div id="cake-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="cake-modal-title">
+    <div class="modal-box cake-modal-box">
+      <button id="close-cake-btn" class="modal-close-btn" aria-label="Close modal">×</button>
+      
+      <h3 id="cake-modal-title" class="modal-heading">Make a Birthday Wish!</h3>
+      <p class="modal-subheading">Close your eyes, think of your sweetest dream, and tap the candles to blow them out.</p>
+
+      <div class="cake-stage">
+        <div class="birthday-cake" id="birthday-cake">
+          <div class="cake-plate"></div>
+          <div class="cake-layer layer-bottom">
+            <div class="frosting-drip drip-1"></div>
+            <div class="frosting-drip drip-2"></div>
+            <div class="frosting-drip drip-3"></div>
+          </div>
+          <div class="cake-layer layer-top">
+            <div class="strawberry s1">🍓</div>
+            <div class="strawberry s2">🍓</div>
+            <div class="strawberry s3">🍓</div>
+          </div>
+          <div class="candles-group">
+            <div class="candle c1">
+              <div class="wick"></div>
+              <div class="flame flame-lit"></div>
+              <div class="smoke"></div>
+            </div>
+            <div class="candle c2">
+              <div class="wick"></div>
+              <div class="flame flame-lit"></div>
+              <div class="smoke"></div>
+            </div>
+            <div class="candle c3">
+              <div class="wick"></div>
+              <div class="flame flame-lit"></div>
+              <div class="smoke"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cake-action-wrap">
+        <button id="blow-candles-btn" class="btn-pill-primary glow-pulse">
+          <span>💨 Blow Out Candles!</span>
+        </button>
+        <p id="wish-success-msg" class="wish-success-msg hidden">
+          🎉 Your wish has flown up to the stars! May every single wish come true! ✨🎂
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: WHEEL SURPRISE WINNER -->
+  <div id="wheel-winner-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal-box winner-modal-box">
+      <button id="close-winner-btn" class="modal-close-btn" aria-label="Close modal">×</button>
+      <div class="winner-icon-wrap">🎁</div>
+      <h3 class="modal-heading">Birthday Surprise Won!</h3>
+      <div class="winner-prize-card">
+        <span class="winner-prize-title" id="winner-prize-text">Surprise Dinner</span>
+        <p class="winner-prize-desc" id="winner-prize-desc">Get ready for an enchanting evening planned just for the two of us!</p>
+      </div>
+      <button id="claim-prize-btn" class="btn-pill-primary">
+        <span>Claim My Surprise ♥</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- FULL CUSTOMIZATION STUDIO (YourLovePage Editor Matching Images 2, 3, 4) -->
+  <div id="settings-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+    <div class="modal-box studio-modal-box">
+      <button id="close-settings-btn" class="modal-close-btn" aria-label="Close studio">×</button>
+      
+      <div class="studio-header">
+        <div class="studio-brand">
+          <span class="studio-badge">EDITOR</span>
+          <h3 id="settings-title" class="studio-title">Customize Page</h3>
+        </div>
+        <p class="studio-subtitle">Edit design, effects, confetti, photos, and wheel surprises</p>
+      </div>
+
+      <!-- Studio Navigation Tabs -->
+      <nav class="studio-tabs" role="tablist">
+        <button type="button" class="studio-tab active" data-tab="tab-design">🎨 Design</button>
+        <button type="button" class="studio-tab" data-tab="tab-header">🎂 Header & Wish</button>
+        <button type="button" class="studio-tab" data-tab="tab-reasons">💖 Reasons</button>
+        <button type="button" class="studio-tab" data-tab="tab-photos">📷 Photos</button>
+        <button type="button" class="studio-tab" data-tab="tab-wheel">🎡 Prize Wheel</button>
+        <button type="button" class="studio-tab" data-tab="tab-letter">💌 Letter & Date</button>
+      </nav>
+
+      <form id="settings-form" class="studio-form">
+
+        <!-- TAB 1: DESIGN & EFFECTS (Sidebar in Images 2, 3, 4) -->
+        <div class="studio-tab-content active" id="tab-design">
+          <div class="studio-section-block">
+            <div class="block-header">
+              <span class="block-tag">THEME</span>
+              <h4 class="block-title">Color palette</h4>
+              <p class="block-desc">This controls the background and accents of your page.</p>
+            </div>
+            
+            <div class="palette-options">
+              <label class="palette-card">
+                <input type="radio" name="color-palette" value="lavender" checked>
+                <div class="palette-preview">
+                  <span class="swatch" style="background: #FAF5FF; border: 1px solid #C4B5FD;"></span>
+                  <span class="swatch" style="background: #8B5CF6;"></span>
+                  <span class="swatch" style="background: #6D28D9;"></span>
+                </div>
+                <span class="palette-name">Lavender</span>
+              </label>
+
+              <label class="palette-card">
+                <input type="radio" name="color-palette" value="rose">
+                <div class="palette-preview">
+                  <span class="swatch" style="background: #FFF1F5; border: 1px solid #FDA4AF;"></span>
+                  <span class="swatch" style="background: #FB7185;"></span>
+                  <span class="swatch" style="background: #E11D48;"></span>
+                </div>
+                <span class="palette-name">Rose Pink</span>
+              </label>
+
+              <label class="palette-card">
+                <input type="radio" name="color-palette" value="peach">
+                <div class="palette-preview">
+                  <span class="swatch" style="background: #FFF7ED; border: 1px solid #FDBA74;"></span>
+                  <span class="swatch" style="background: #FB923C;"></span>
+                  <span class="swatch" style="background: #EA580C;"></span>
+                </div>
+                <span class="palette-name">Peach Warm</span>
+              </label>
+
+              <label class="palette-card">
+                <input type="radio" name="color-palette" value="ocean">
+                <div class="palette-preview">
+                  <span class="swatch" style="background: #F0FDFA; border: 1px solid #5EEAD4;"></span>
+                  <span class="swatch" style="background: #2DD4BF;"></span>
+                  <span class="swatch" style="background: #0D9488;"></span>
+                </div>
+                <span class="palette-name">Ocean Sky</span>
+              </label>
+
+              <label class="palette-card">
+                <input type="radio" name="color-palette" value="midnight">
+                <div class="palette-preview">
+                  <span class="swatch" style="background: #1B102B; border: 1px solid #A855F7;"></span>
+                  <span class="swatch" style="background: #C084FC;"></span>
+                  <span class="swatch" style="background: #9333EA;"></span>
+                </div>
+                <span class="palette-name">Midnight</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="studio-section-block">
+            <div class="block-header">
+              <span class="block-tag">VISUAL</span>
+              <h4 class="block-title">Page effects</h4>
+              <p class="block-desc">Add subtle motion and glow on your final page.</p>
+            </div>
+
+            <div class="form-group">
+              <select id="select-page-effect" class="studio-select">
+                <option value="floating-hearts">Floating Hearts ♥ (Default)</option>
+                <option value="sparkles">Sparkles & Stars ✨</option>
+                <option value="petals">Falling Petals 🌸</option>
+                <option value="balloons">Floating Balloons 🎈</option>
+                <option value="none">None (Clean)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: HEADER & CONFETTI EXPLOSION (Image 2) -->
+        <div class="studio-tab-content" id="tab-header">
+          <div class="studio-section-block">
+            <div class="block-header">
+              <h4 class="block-title">Header Block</h4>
+            </div>
+
+            <div class="form-group">
+              <label for="input-header-title">Title</label>
+              <input type="text" id="input-header-title" value="Happy Birthday, My Love">
+            </div>
+
+            <div class="form-group">
+              <label for="input-header-subtitle">Subtitle (optional)</label>
+              <input type="text" id="input-header-subtitle" value="Today we celebrate the most amazing person in my world 🎂">
+            </div>
+          </div>
+
+          <div class="studio-section-block">
+            <div class="block-header">
+              <h4 class="block-title">Confetti Explosion (Wish Button)</h4>
+            </div>
+
+            <div class="form-group">
+              <label for="input-wish-button-text">BUTTON TEXT</label>
+              <input type="text" id="input-wish-button-text" value="🎂 Make a Wish! 🎂">
+            </div>
+
+            <div class="form-group">
+              <label for="input-wish-title-above">TITLE ABOVE THE BUTTON</label>
+              <input type="text" id="input-wish-title-above" placeholder="Optional, e.g. Press for a surprise">
+            </div>
+
+            <div class="form-group">
+              <label for="input-wish-line-under">SMALL LINE UNDERNEATH</label>
+              <input type="text" id="input-wish-line-under" placeholder="Optional, e.g. go on, tap it as many times as you like">
+            </div>
+
+            <div class="form-group">
+              <label>WHAT FLIES OUT</label>
+              <div class="flies-out-grid">
+                <label class="flies-card">
+                  <input type="radio" name="confetti-type" value="cute-icons" checked>
+                  <div class="flies-content">
+                    <span class="flies-title">Cute icons</span>
+                    <span class="flies-sub">Hearts, paws, petals and stars in your page colours</span>
+                  </div>
+                </label>
+
+                <label class="flies-card">
+                  <input type="radio" name="confetti-type" value="emoji">
+                  <div class="flies-content">
+                    <span class="flies-title">Emoji</span>
+                    <span class="flies-sub">The classic emoji shower</span>
+                  </div>
+                </label>
+
+                <label class="flies-card">
+                  <input type="radio" name="confetti-type" value="paper">
+                  <div class="flies-content">
+                    <span class="flies-title">Paper confetti</span>
+                    <span class="flies-sub">Party streamers and squares</span>
+                  </div>
+                </label>
+
+                <label class="flies-card">
+                  <input type="radio" name="confetti-type" value="balloons">
+                  <div class="flies-content">
+                    <span class="flies-title">Balloons</span>
+                    <span class="flies-sub">Balloons floating up the screen</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group hidden" id="emoji-set-group">
+              <label for="select-emoji-set">Emoji set</label>
+              <select id="select-emoji-set" class="studio-select">
+                <option value="hearts">Hearts 💕💖💘</option>
+                <option value="birthday">Birthday 🎂🎉🎈</option>
+                <option value="stars">Stars ✨🌟💫</option>
+                <option value="kisses">Sweet Kisses 💋🥰😘</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB: REASONS YOU MAKE MY WORLD BRIGHTER (Image 2) -->
+        <div class="studio-tab-content" id="tab-reasons">
+          <div class="studio-section-block">
+            <div class="block-header">
+              <span class="block-tag">LIST</span>
+              <h4 class="block-title">Reasons Block</h4>
+              <p class="block-desc">A little list of all the things you adore about her.</p>
+            </div>
+
+            <div class="form-group">
+              <label for="input-reasons-title">TITLE</label>
+              <input type="text" id="input-reasons-title" value="Reasons You Make My World Brighter">
+            </div>
+
+            <div class="form-group">
+              <label for="input-reasons-subtitle">SUBTITLE</label>
+              <input type="text" id="input-reasons-subtitle" value="A little list of all the things I adore about you">
+            </div>
+
+            <div class="form-group">
+              <label for="input-reasons-badge">BADGE TEXT</label>
+              <input type="text" id="input-reasons-badge" value="♥ 8 REASONS" placeholder="e.g. ♥ 8 REASONS or leave blank for auto-count">
+            </div>
+          </div>
+
+          <div class="studio-section-block">
+            <div class="block-header">
+              <div class="prizes-editor-head">
+                <label>Reasons List</label>
+                <div class="reasons-head-actions">
+                  <button type="button" id="reset-reasons-preset-btn" class="btn-link-action" style="color: var(--purple-primary); margin-right: 10px;">↺ Default 8</button>
+                  <button type="button" id="add-reason-btn" class="btn-link-action">+ Add reason</button>
+                </div>
+              </div>
+              <p class="prizes-hint">Edit the emoji icon, main reason, and optional sweet subnote for each card.</p>
+            </div>
+
+            <div id="studio-reasons-list" class="studio-reasons-list">
+              <!-- Dynamically populated reason rows -->
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: PHOTO CAROUSEL & FRAME (Image 3) -->
+        <div class="studio-tab-content" id="tab-photos">
+          <div class="studio-section-block">
+            <div class="block-header">
+              <h4 class="block-title">Photo Carousel</h4>
+            </div>
+
+            <div class="form-group">
+              <label for="input-photos-title">TITLE ABOVE THE PHOTOS</label>
+              <input type="text" id="input-photos-title" value="Our Sweet Moments" placeholder="Optional, e.g. Us, collected">
+            </div>
+
+            <div class="form-group">
+              <label>FRAME STYLE</label>
+              <div class="frame-toggle-wrap">
+                <button type="button" class="frame-toggle-btn active" id="frame-polaroid-btn" data-frame="polaroid">Polaroid</button>
+                <button type="button" class="frame-toggle-btn" id="frame-clean-btn" data-frame="clean">Clean</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>MANAGE PHOTOS</label>
+              <div class="studio-upload-zone" id="studio-upload-zone">
+                <span class="upload-icon">🖼️</span>
+                <p class="upload-hint">Drag & drop images here, or click to select files</p>
+                <span class="upload-subhint">(JPEG, PNG, WebP up to 10MB each)</span>
+                <input type="file" id="studio-file-input" accept="image/*" class="sr-only" multiple>
+              </div>
+              <div id="studio-photos-preview" class="studio-photos-preview"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4: PRIZE WHEEL & PRESETS (Image 4) -->
+        <div class="studio-tab-content" id="tab-wheel">
+          <div class="studio-section-block">
+            <div class="block-header">
+              <h4 class="block-title">Prize Wheel Settings</h4>
+            </div>
+
+            <div class="form-group">
+              <label for="input-wheel-title">TITLE</label>
+              <input type="text" id="input-wheel-title" value="Spin for Your Birthday Surprise">
+            </div>
+
+            <div class="form-group">
+              <label for="input-wheel-line-above">LINE ABOVE THE PRIZE</label>
+              <input type="text" id="input-wheel-line-above" value="6 things could happen next" placeholder="e.g. Let's see what treat awaits you !">
+            </div>
+
+            <div class="form-group">
+              <label for="input-wheel-button-text">BUTTON TEXT</label>
+              <input type="text" id="input-wheel-button-text" value="Spin the Wheel">
+            </div>
+
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" id="check-wheel-respin" checked>
+                <span>Let them spin again after they win</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="studio-section-block">
+            <div class="block-header">
+              <span class="block-sparkle">✨ Fill the wheel in one tap</span>
+              <p class="block-desc">Replaces whatever is on the wheel right now.</p>
+            </div>
+
+            <div class="preset-pills-row">
+              <button type="button" class="preset-pill" data-preset="datenight">Date night</button>
+              <button type="button" class="preset-pill" data-preset="littletreats">Little treats</button>
+              <button type="button" class="preset-pill" data-preset="cheeky">Cheeky</button>
+            </div>
+
+            <div class="prizes-editor-wrap">
+              <div class="prizes-editor-head">
+                <label>Prizes</label>
+                <button type="button" id="add-prize-btn" class="btn-link-action">+ Add prize</button>
+              </div>
+              <p class="prizes-hint">Tap a colour dot to recolour the slice.</p>
+
+              <div id="prizes-list" class="prizes-list">
+                <!-- Dynamically populated prize rows -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 5: LETTER & ANNIVERSARY DATE -->
+        <div class="studio-tab-content" id="tab-letter">
+          <div class="studio-section-block">
+            <div class="block-header">
+              <h4 class="block-title">Anniversary & Love Letter</h4>
+            </div>
+
+            <div class="form-group">
+              <label for="input-girlfriend-name">Her Name / Title:</label>
+              <input type="text" id="input-girlfriend-name" placeholder="e.g., My Love or Sarah" value="My Love">
+            </div>
+
+            <div class="form-group">
+              <label for="input-anniversary-date">Relationship Start / Anniversary Date:</label>
+              <input type="date" id="input-anniversary-date" value="2025-09-05">
+            </div>
+
+            <div class="form-group">
+              <label for="input-letter-body">Custom Love Letter Message:</label>
+              <textarea id="input-letter-body" rows="4" placeholder="Write your heartfelt message here..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="input-sender-signature">Your Signature:</label>
+              <input type="text" id="input-sender-signature" placeholder="e.g., Forever Yours, Alex ♡" value="Forever & Always Yours,\nWith all my love ♡">
+            </div>
+          </div>
+        </div>
+
+        <!-- Sticky Action Buttons -->
+        <div class="studio-footer-actions">
+          <button type="submit" class="btn-pill-primary save-btn">Save Changes</button>
+          <button type="button" id="reset-defaults-btn" class="btn-pill-outline">Reset Defaults</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Fullscreen Photo Lightbox -->
+  <div id="photo-lightbox" class="lightbox-backdrop hidden">
+    <button id="close-lightbox-btn" class="lightbox-close">×</button>
+    <img id="lightbox-img" src="" alt="Enlarged memory photo">
+    <p id="lightbox-caption" class="lightbox-caption"></p>
+  </div>
+
+  <script type="module" src="./src/js/main.js"></script>
+</body>
+</html>
