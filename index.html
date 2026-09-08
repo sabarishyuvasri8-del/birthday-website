@@ -73,10 +73,10 @@
       <h2 class="section-title" id="photos-section-title">Our Sweet Moments</h2>
       <p class="section-subtitle">A glimpse of the smiles we share</p>
 
-      <!-- Empty State or Gallery List -->
+      <!-- Photos Gallery -->
       <div id="photos-container" class="photos-container">
-        <!-- Default interactive empty frame matching screenshot with instant add photo button -->
-        <div class="dashed-photo-box" id="dashed-photo-box">
+        <!-- Empty State (hidden because photos are permanently featured) -->
+        <div class="dashed-photo-box hidden" id="dashed-photo-box">
           <div class="empty-icon-wrap">📷</div>
           <p class="empty-text">No photos yet</p>
           <label for="photo-upload-input" class="btn-pill-outline photo-upload-label">
@@ -85,8 +85,40 @@
           <input type="file" id="photo-upload-input" accept="image/*" class="sr-only" multiple>
         </div>
 
-        <!-- Polaroid or Clean Gallery (populated dynamically) -->
-        <div id="polaroid-track" class="polaroid-track hidden"></div>
+        <!-- Polaroid Gallery (Permanent Couple Memories) -->
+        <div id="polaroid-track" class="polaroid-track">
+          <div class="polaroid-card">
+            <div class="polaroid-img-wrap">
+              <img src="./images/memory1.jpg" alt="My Favorite Smile" class="polaroid-img" loading="lazy">
+            </div>
+            <p class="polaroid-caption">My Favorite Smile ♥</p>
+            <span class="polaroid-date">Our Beautiful Days</span>
+          </div>
+
+          <div class="polaroid-card">
+            <div class="polaroid-img-wrap">
+              <img src="./images/memory2.jpg" alt="Pure Love & Cuddles" class="polaroid-img" loading="lazy">
+            </div>
+            <p class="polaroid-caption">Pure Love & Cuddles ♡</p>
+            <span class="polaroid-date">Sweetest Moments</span>
+          </div>
+
+          <div class="polaroid-card">
+            <div class="polaroid-img-wrap">
+              <img src="./images/memory3.jpg" alt="Side by Side Forever" class="polaroid-img" loading="lazy">
+            </div>
+            <p class="polaroid-caption">Side by Side Forever 🌟</p>
+            <span class="polaroid-date">Always With You</span>
+          </div>
+
+          <div class="polaroid-card">
+            <div class="polaroid-img-wrap">
+              <img src="./images/memory4.jpg" alt="Just Us Against the World" class="polaroid-img" loading="lazy">
+            </div>
+            <p class="polaroid-caption">Just Us Against the World 💖</p>
+            <span class="polaroid-date">Unforgettable Memories</span>
+          </div>
+        </div>
       </div>
     </section>
 

@@ -1,7 +1,46 @@
 /**
  * Photo Memories & Carousel Studio (Images 1 & 3)
- * Supports Polaroid vs Clean frame styles, custom section title, and photo manager
+ * Supports permanent default couple photos, Polaroid vs Clean frame styles,
+ * custom section title, and photo manager
  */
+
+export const defaultPhotos = [
+  {
+    src: './images/memory1.jpg',
+    caption: 'My Favorite Smile ♥',
+    date: 'Our Beautiful Days'
+  },
+  {
+    src: './images/memory2.jpg',
+    caption: 'Pure Love & Cuddles ♡',
+    date: 'Sweetest Moments'
+  },
+  {
+    src: './images/memory3.jpg',
+    caption: 'Side by Side Forever 🌟',
+    date: 'Always With You'
+  },
+  {
+    src: './images/memory4.jpg',
+    caption: 'Just Us Against the World 💖',
+    date: 'Unforgettable Memories'
+  }
+];
+
+export function getPhotos() {
+  try {
+    const stored = localStorage.getItem('love_photos_list');
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed;
+      }
+    }
+  } catch (e) {
+    console.warn('Error loading photos:', e);
+  }
+  return defaultPhotos;
+}
 
 export function initPhotos() {
   const sectionTitle = document.getElementById('photos-section-title');
@@ -16,15 +55,6 @@ export function initPhotos() {
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxCaption = document.getElementById('lightbox-caption');
   const closeLightboxBtn = document.getElementById('close-lightbox-btn');
-
-  function getPhotos() {
-    try {
-      const stored = localStorage.getItem('love_photos_list');
-      return stored ? JSON.parse(stored) : [];
-    } catch {
-      return [];
-    }
-  }
 
   function savePhotos(photos) {
     localStorage.setItem('love_photos_list', JSON.stringify(photos));
@@ -116,8 +146,9 @@ export function initPhotos() {
 
       thumb.querySelector('.thumb-del-btn')?.addEventListener('click', (e) => {
         e.stopPropagation();
-        photos.splice(idx, 1);
-        savePhotos(photos);
+        const updated = [...photos];
+        updated.splice(idx, 1);
+        savePhotos(updated);
       });
 
       studioPhotosPreview.appendChild(thumb);
@@ -126,7 +157,7 @@ export function initPhotos() {
 
   function handleFiles(files) {
     if (!files.length) return;
-    const currentPhotos = getPhotos();
+    const currentPhotos = [...getPhotos()];
 
     files.forEach((file) => {
       const reader = new FileReader();
@@ -169,7 +200,6 @@ export function initPhotos() {
     studioFileInput?.click();
   });
 
-  // Drag and drop for studio
   studioUploadZone?.addEventListener('dragover', (e) => {
     e.preventDefault();
     studioUploadZone.style.background = 'var(--purple-pale)';
