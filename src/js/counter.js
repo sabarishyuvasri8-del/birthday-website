@@ -16,11 +16,11 @@ export function initCounter() {
 
   function getStartDate() {
     const savedDate = localStorage.getItem('love_anniversary_date');
-    if (savedDate) {
-      return new Date(savedDate + 'T00:00:00');
+    if (!savedDate || savedDate === '2025-09-05') {
+      localStorage.setItem('love_anniversary_date', '2025-03-16');
+      return new Date('2025-03-16T00:00:00');
     }
-    // Default from screenshot: September 5, 2025
-    return new Date('2025-09-05T00:00:00');
+    return new Date(savedDate + 'T00:00:00');
   }
 
   function formatPad(n) {
@@ -111,4 +111,5 @@ export function initCounter() {
 
   update();
   setInterval(update, 1000);
+  window.addEventListener('love_content_updated', update);
 }

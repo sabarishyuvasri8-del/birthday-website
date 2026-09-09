@@ -197,7 +197,11 @@ export function initSettings() {
 
     // 7. Letter & Date
     const savedName = localStorage.getItem('love_girlfriend_name') || 'My Love';
-    const savedDate = localStorage.getItem('love_anniversary_date') || '2025-09-05';
+    let savedDate = localStorage.getItem('love_anniversary_date');
+    if (!savedDate || savedDate === '2025-09-05') {
+      savedDate = '2025-03-16';
+      localStorage.setItem('love_anniversary_date', '2025-03-16');
+    }
     const defaultLetter = `Happy Birthday to the most breathtaking girl in the entire universe! Every single day with you is filled with so much sunshine, laughter, and pure happiness. Thank you for loving me, inspiring me, and making my life so incredibly complete. I hope all your sweetest dreams come true this year!`;
     const savedLetter = localStorage.getItem('love_custom_letter') || defaultLetter;
     const savedSignature = localStorage.getItem('love_custom_signature') || 'Forever & Always Yours,\nWith all my love ♡';
@@ -450,7 +454,7 @@ export function initSettings() {
 
     // 7. Letter & Date
     const name = inputName.value.trim() || 'My Love';
-    const date = inputDate.value || '2025-09-05';
+    const date = inputDate.value || '2025-03-16';
     const letter = inputLetter.value.trim();
     const signature = inputSignature.value.trim();
 
