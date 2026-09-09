@@ -6,12 +6,11 @@
 import confetti from 'canvas-confetti';
 
 export const defaultReasons = [
-  { emoji: '✨', title: 'The way you light up every room you enter', note: 'Your warmth is impossible not to feel.' },
+  { emoji: '✨', title: 'To me, you are perfect just the way you are', note: 'Your warmth is impossible not to feel.' },
   { emoji: '😍', title: 'Your laugh that I could listen to forever', note: "It's my absolute favorite sound." },
-  { emoji: '💘', title: 'How thoughtful you are with everyone you love', note: 'You have the gentlest, purest soul.' },
-  { emoji: '🌹', title: 'Your big dreams and even bigger heart', note: 'You inspire me to be better every day.' },
+  { emoji: '💘', title: 'You are my favorite view in the whole world', note: 'You have the gentlest, purest soul.' },
+  { emoji: '🌹', title: 'Loving you is my favorite thing to do', note: 'You inspire me to be better every day.' },
   { emoji: '🌟', title: 'The way you make ordinary days feel like adventures', note: 'Even grocery trips are sweet with you.' },
-  { emoji: '☕', title: 'Our cozy late-night conversations and silly jokes', note: 'Hours fly by like seconds.' },
   { emoji: '💖', title: 'The peace I feel whenever you hold my hand', note: 'You are my safe space and home.' },
   { emoji: '👑', title: 'Just simply being the wonderful, irreplaceable you', note: "I wouldn't trade you for the entire world." }
 ];
@@ -21,6 +20,13 @@ export function getReasons() {
     const stored = localStorage.getItem('love_reasons_list');
     if (stored) {
       const parsed = JSON.parse(stored);
+      // Auto-migrate if someone still has the old 8 default reasons
+      if (Array.isArray(parsed) && (parsed.length === 8 || parsed[0]?.title === 'The way you light up every room you enter')) {
+        localStorage.setItem('love_reasons_list', JSON.stringify(defaultReasons));
+        localStorage.setItem('love_reasons_badge', '♥ 7 REASONS');
+        localStorage.setItem('love_reasons_subtitle', 'A little list of the things I adore about you');
+        return defaultReasons;
+      }
       if (Array.isArray(parsed) && parsed.length > 0) {
         return parsed;
       }
@@ -38,9 +44,15 @@ export function renderReasons() {
   const reasonsBadgeEl = document.getElementById('reasons-badge');
 
   const customTitle = localStorage.getItem('love_reasons_title') || 'Reasons You Make My World Brighter';
-  const customSubtitle = localStorage.getItem('love_reasons_subtitle') || 'A little list of all the things I adore about you';
+  let customSubtitle = localStorage.getItem('love_reasons_subtitle');
+  if (!customSubtitle || customSubtitle === 'A little list of all the things I adore about you') {
+    customSubtitle = 'A little list of the things I adore about you';
+  }
   const reasons = getReasons();
-  const customBadge = localStorage.getItem('love_reasons_badge') || `♥ ${reasons.length} REASONS`;
+  let customBadge = localStorage.getItem('love_reasons_badge');
+  if (!customBadge || customBadge === '♥ 8 REASONS') {
+    customBadge = `♥ ${reasons.length} REASONS`;
+  }
 
   if (reasonsTitleEl) reasonsTitleEl.textContent = customTitle;
   if (reasonsSubtitleEl) reasonsSubtitleEl.textContent = customSubtitle;

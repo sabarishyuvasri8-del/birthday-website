@@ -130,11 +130,14 @@ export function initSettings() {
     if (selectPageEffect) selectPageEffect.value = savedEffect;
 
     // 3. Header & Confetti
-    const headerTitle = localStorage.getItem('love_header_title') || 'Happy Birthday, My Love';
+    let headerTitle = localStorage.getItem('love_header_title');
+    if (!headerTitle || headerTitle === 'Happy Birthday, My Love') {
+      headerTitle = 'Happy Birthday, My Babyy Girrll';
+    }
     const headerSub = localStorage.getItem('love_header_subtitle') || 'Today we celebrate the most amazing person in my world 🎂';
     const wishBtnText = localStorage.getItem('love_wish_btn_text') || '🎂 Make a Wish! 🎂';
-    const wishTitleAbove = localStorage.getItem('love_wish_title_above') || '';
-    const wishLineUnder = localStorage.getItem('love_wish_line_under') || '';
+    const wishTitleAbove = localStorage.getItem('love_wish_title_above') ?? 'We will be forever together';
+    const wishLineUnder = localStorage.getItem('love_wish_line_under') ?? 'I am so lucky to have you. You are my everything !!';
     const confettiType = localStorage.getItem('love_confetti_type') || 'cute-icons';
     const emojiSet = localStorage.getItem('love_emoji_set') || 'hearts';
 
@@ -152,8 +155,14 @@ export function initSettings() {
 
     // 4. Reasons Block
     const reasonsTitle = localStorage.getItem('love_reasons_title') || 'Reasons You Make My World Brighter';
-    const reasonsSub = localStorage.getItem('love_reasons_subtitle') || 'A little list of all the things I adore about you';
-    const reasonsBadge = localStorage.getItem('love_reasons_badge') || '♥ 8 REASONS';
+    let reasonsSub = localStorage.getItem('love_reasons_subtitle');
+    if (!reasonsSub || reasonsSub === 'A little list of all the things I adore about you') {
+      reasonsSub = 'A little list of the things I adore about you';
+    }
+    let reasonsBadge = localStorage.getItem('love_reasons_badge');
+    if (!reasonsBadge || reasonsBadge === '♥ 8 REASONS') {
+      reasonsBadge = '♥ 7 REASONS';
+    }
 
     if (inputReasonsTitle) inputReasonsTitle.value = reasonsTitle;
     if (inputReasonsSubtitle) inputReasonsSubtitle.value = reasonsSub;
@@ -162,7 +171,7 @@ export function initSettings() {
     try {
       const storedReasons = localStorage.getItem('love_reasons_list');
       currentReasonsList = storedReasons ? JSON.parse(storedReasons) : JSON.parse(JSON.stringify(defaultReasons));
-      if (!Array.isArray(currentReasonsList) || currentReasonsList.length === 0) {
+      if (!Array.isArray(currentReasonsList) || currentReasonsList.length === 0 || (currentReasonsList.length === 8 && currentReasonsList[0]?.title === 'The way you light up every room you enter')) {
         currentReasonsList = JSON.parse(JSON.stringify(defaultReasons));
       }
     } catch {
@@ -196,7 +205,11 @@ export function initSettings() {
     renderPrizesList();
 
     // 7. Letter & Date
-    const savedName = localStorage.getItem('love_girlfriend_name') || 'My Love';
+    let savedName = localStorage.getItem('love_girlfriend_name');
+    if (!savedName || savedName === 'My Love') {
+      savedName = 'Myy Love';
+      localStorage.setItem('love_girlfriend_name', 'Myy Love');
+    }
     let savedDate = localStorage.getItem('love_anniversary_date');
     if (!savedDate || savedDate === '2025-09-05') {
       savedDate = '2025-03-16';
@@ -453,7 +466,7 @@ export function initSettings() {
     localStorage.setItem('love_wheel_slices', JSON.stringify(currentWheelPrizes));
 
     // 7. Letter & Date
-    const name = inputName.value.trim() || 'My Love';
+    const name = inputName.value.trim() || 'Myy Love';
     const date = inputDate.value || '2025-03-16';
     const letter = inputLetter.value.trim();
     const signature = inputSignature.value.trim();
@@ -466,7 +479,7 @@ export function initSettings() {
     // Update main page elements directly
     const heroTitle = document.getElementById('hero-title');
     const heroSub = document.getElementById('hero-subtitle');
-    if (heroTitle) heroTitle.textContent = inputHeaderTitle ? inputHeaderTitle.value.trim() : `Happy Birthday, ${name}`;
+    if (heroTitle) heroTitle.textContent = inputHeaderTitle ? inputHeaderTitle.value.trim() : 'Happy Birthday, My Babyy Girrll';
     if (heroSub && inputHeaderSubtitle) heroSub.textContent = inputHeaderSubtitle.value.trim();
 
     // Broadcast update to all modules

@@ -13,7 +13,10 @@ export function initEnvelope() {
   const letterSignature = document.getElementById('letter-signature-text');
 
   function loadLetterContent() {
-    const girlfriendName = localStorage.getItem('love_girlfriend_name') || 'My Love';
+    let girlfriendName = localStorage.getItem('love_girlfriend_name');
+    if (!girlfriendName || girlfriendName === 'My Love') {
+      girlfriendName = 'Myy Love';
+    }
     const customLetter = localStorage.getItem('love_custom_letter');
     const customSignature = localStorage.getItem('love_custom_signature');
 

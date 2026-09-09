@@ -21,8 +21,8 @@ export function initCake() {
 
   function loadWishSettings() {
     const btnText = localStorage.getItem('love_wish_btn_text') || 'Make a Wish!';
-    const titleAbove = localStorage.getItem('love_wish_title_above');
-    const lineUnder = localStorage.getItem('love_wish_line_under');
+    const titleAbove = localStorage.getItem('love_wish_title_above') ?? 'We will be forever together';
+    const lineUnder = localStorage.getItem('love_wish_line_under') ?? 'I am so lucky to have you. You are my everything !!';
 
     if (makeWishText) makeWishText.textContent = btnText;
 
