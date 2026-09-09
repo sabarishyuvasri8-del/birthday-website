@@ -109,25 +109,6 @@ export function initPhotos() {
 
         polaroidTrack.appendChild(card);
       });
-
-      // Add a mini "+ Add memory" card at the end
-      const addMoreCard = document.createElement('div');
-      addMoreCard.className = 'polaroid-card add-more-polaroid';
-      addMoreCard.style.display = 'flex';
-      addMoreCard.style.flexDirection = 'column';
-      addMoreCard.style.alignItems = 'center';
-      addMoreCard.style.justifyContent = 'center';
-      addMoreCard.style.minHeight = '140px';
-      addMoreCard.style.background = 'rgba(245, 238, 255, 0.7)';
-      addMoreCard.style.border = '2px dashed var(--purple-light)';
-      addMoreCard.innerHTML = `
-        <span style="font-size: 1.8rem; color: var(--purple-primary);">+</span>
-        <span style="font-size: 0.8rem; font-weight: 700; color: var(--purple-primary); margin-top: 4px;">Add Memory</span>
-      `;
-      addMoreCard.addEventListener('click', () => {
-        fileInput?.click();
-      });
-      polaroidTrack.appendChild(addMoreCard);
     }
   }
 
