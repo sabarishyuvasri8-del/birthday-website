@@ -502,4 +502,9 @@ export function initSettings() {
 
   // Initial load
   loadStudioValues();
+
+  // Expose global helper for future access if needed
+  window.openCustomizeStudio = () => {
+    settingsModal?.classList.remove('hidden');
+  };
 }
